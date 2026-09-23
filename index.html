@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>☠☠☠ ACCESS GRANTED ☠☠☠</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #FF0000;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+        }
+        .warning-box {
+            border: 4px ridge #FF0000;
+            padding: 15px;
+            background-color: #0a0000;
+            max-width: 650px;
+            margin: 20px auto;
+        }
+        /* The secret sauce: Distorting the webcam view using 90s-style harsh filters */
+        #webcamFeed {
+            width: 400px;
+            height: 300px;
+            border: 5px inset #FF0000;
+            background-color: #111;
+            transform: scaleX(-1); /* Flips the camera so it acts like a mirror */
+            filter: contrast(500%) brightness(40%) saturate(0%) invert(100%); 
+            display: none; /* Hidden until they accept */
+        }
+        .btn {
+            background-color: #220000;
+            color: #FFFF00;
+            border: 3px outset #FF0000;
+            padding: 10px 20px;
+            font-family: "Impact", sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #FF0000;
+            color: #000;
+        }
+    </style>
+    
+    <script>
+        function startCameraScare() {
+            // Step 1: Trigger the creepy classic prompt
+            alert("SYSTEM: Node connection requires biometric terminal verification.");
+            
+            // Step 2: Request access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    // Success! Hide the button, show the heavily distorted video
+                    document.getElementById("promptBtn").style.display = "none";
+                    
+                    var video = document.getElementById("webcamFeed");
+                    video.style.display = "block";
+                    video.srcObject = stream;
+                    video.play();
+                    
+                    // Final scary pop-up right as they see themselves
+                    setTimeout(function() {
+                        alert("FOUND YOU.");
+                    }, 500);
+                })
+                .catch(function(error) {
+                    // If they deny access, give them a creepy backup error
+                    alert("ERROR: You cannot hide from the server. Access will be forced.");
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <marquee scrollamount="6" bgcolor="#111"><font color="#FFFF00">⚡ TRANSMISSION RECEIVED // SCANNING FOR HOST TERMINAL ⚡</font></marquee>
+
+    <div class="warning-box">
+        <h1><font face="Impact" size="6">THE BASEMENT CAM</font></h1>
+        <p>The network requires a visual handshake to establish the dial-up link. Failure to authenticate will result in permanent hardware isolation.</p>
+        <hr color="#FF0000" size="2">
+        
+        <br><br>
+        
+        <!-- The Live Video Container -->
+        <center>
+            <video id="webcamFeed" autoplay playsinline></video>
+            
+            <br>
+            <button id="promptBtn" class="btn" onclick="startCameraScare()">
+                [ ENABLE BIOMETRIC VERIFICATION ]
+            </button>
+        </center>
+        
+        <br><br>
+    </div>
+
+    <p><font size="2" color="#555">Incoming packet source: unknown_node_geocities_97.dll</font></p>
+
+</body>
+</html>
